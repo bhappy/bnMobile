@@ -1,0 +1,19 @@
+<% text ||= text %>
+
+<h1><%= text if text %></h1>
+<div id="grid">
+  <% @products.each_with_index do |p, i| %>
+    <div class="product">
+      <a href="<%= product_path(p.attr('u')) %>"><img src="<%= p.xpath("a[@n=\"#{THUMBNAIL}\"]").attr('v').value %>"></a><br/>
+ 	  <%= link_to p.xpath("a[@n=\"#{TITLE}\"]").attr('v').value, product_path(p.attr('u')) %><br />
+  	  <span class="rating-static rating-<%= (6 + rand(5))*5 %>"></span>
+	  <p><%= CURRENCY %><%= p.xpath("a[@n=\"#{PRICE}\"]").attr('v').value %></p>
+	  
+	</div>
+
+	<% if i % 3 == 2 %>
+	  <div class="clear"></div>
+	<% end %>
+
+  <% end %>
+</div>
